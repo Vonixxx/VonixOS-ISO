@@ -23,7 +23,7 @@
    serviceConfig = {
      Type = "oneshot";
      ExecStart = ''
-        /bin/sh -c "cd /home/nixos && /run/current-system/sw/bin/wget https://github.com/Vonixxx/NixOS/raw/main/iso/automated-install.py -O automated-install.py && chmod +x automated-install.py"
+        /bin/sh -c "cd /home/nixos && /run/current-system/sw/bin/wget https://github.com/Vonixxx/VonixOS/raw/main/install-script/automated-install.py -O automated-install.py && chmod +x automated-install.py"
      '';
    };
  };
