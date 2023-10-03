@@ -17,7 +17,10 @@
    python3Full
  ];
  
- nix.settings.experimental-features = [ "nix-command" "flakes" ];
+ environment.etc = {
+   "fetchVonixOS.sh".mode   = "0755";
+   "fetchVonixOS.sh".source = ./fetchVonixOS.sh;
+ };
 
  systemd.services.fetchScript = {
    wantedBy    = [ "multi-user.target" ];
@@ -25,15 +28,10 @@
    after       = [ "network-online.target" ];
    description = "Fetch and Run Python Script from GitHub";
    serviceConfig = {
-     Type = "oneshot";
-     ExecStart = ''
-        /bin/sh -c '\
-         cd /home/nixos && \
-         /run/current-system/sw/bin/wget https://github.com/Vonixxx/VonixOS/raw/main/install-script/main.py -O main.py && \
-         /run/current-system/sw/bin/wget https://github.com/Vonixxx/VonixOS/raw/main/install-script/functions.py -O functions.py && \
-         chmod +x main.py
-        '
-     '';
+     Type      = "oneshot";
+     ExecStart = "/etc/fetchVonixOS.sh";
    };
  };
+
+ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
