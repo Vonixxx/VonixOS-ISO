@@ -12,6 +12,7 @@
 
  environment.systemPackages = with pkgs; [
    git
+   mkpasswd
    wget
    python3Full
  ];
